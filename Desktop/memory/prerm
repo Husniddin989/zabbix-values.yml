@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Pre-removal script for memory-monitor package
+# This script is executed before the package is removed
+
+# Stop and disable the systemd service
+systemctl stop memory-monitor.service
+systemctl disable memory-monitor.service
+systemctl daemon-reload
+
+echo "Memory Monitor service has been stopped and disabled."

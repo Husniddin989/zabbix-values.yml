@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Post-installation script for memory-monitor package
+# This script is executed after the package is installed
+
+# Make the main script executable
+chmod +x /opt/memory-monitor/memory-monitor.sh
+
+# Enable and start the systemd service
+systemctl daemon-reload
+systemctl enable memory-monitor.service
+systemctl start memory-monitor.service
+
+# Create log file if it doesn't exist
+if [ ! -f "/var/log/memory_monitor.log" ]; then
+    touch /var/log/memory_monitor.log
+    chmod 644 /var/log/memory_monitor.log
+fi
+
+echo "Memory Monitor has been installed and started successfully."
+echo "Configuration file: /etc/memory-monitor/config.conf"
+echo "Log file: /var/log/memory_monitor.log"
+echo "To check service status: systemctl status memory-monitor.service"

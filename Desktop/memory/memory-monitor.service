@@ -1,0 +1,15 @@
+[Unit]
+Description=System Memory, CPU and Disk Monitoring Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/memory-monitor/memory-monitor.sh
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=memory-monitor
+
+[Install]
+WantedBy=multi-user.target
